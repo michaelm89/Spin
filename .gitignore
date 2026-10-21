@@ -1,0 +1,11 @@
+# Build output
+build/
+
+# macOS / Xcode clutter
+.DS_Store
+xcuserdata/
+*.xcuserstate
+DerivedData/
+
+# Local tool settings
+.claude/

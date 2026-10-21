@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spin</title>
+  <meta name="description" content="A record player room that spins along with your Spotify.">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="room" aria-label="A room with a turntable playing your Spotify"></canvas>
+
+  <button id="settings-button" class="corner-button" aria-label="Settings" title="Settings">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/></svg>
+  </button>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h1>Spin</h1>
+      <p id="status" class="status"></p>
+
+      <section id="connect-section">
+        <h2>Connect Spotify</h2>
+        <ol>
+          <li>Open the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a> and open your Spin app (or create one).</li>
+          <li>Under <b>Redirect URIs</b>, add exactly:<br><code id="redirect-uri"></code></li>
+          <li>Make sure <b>Web API</b> is ticked, save, and copy the <b>Client ID</b>.</li>
+        </ol>
+        <label for="client-id">Client ID</label>
+        <input id="client-id" autocomplete="off" spellcheck="false" placeholder="Paste your Client ID">
+        <div class="row">
+          <button id="connect" value="connect" type="button" class="primary">Connect</button>
+        </div>
+      </section>
+
+      <section id="account-section" hidden>
+        <div class="row">
+          <button id="refresh" type="button">Refresh album wall</button>
+          <button id="disconnect" type="button">Disconnect</button>
+        </div>
+      </section>
+
+      <div class="row end">
+        <button value="close">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
